@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean Energy Companies Fundamental Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 800px;
+            max-height: 600px;
+            margin: 20px auto;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Clean Energy Companies Fundamental Analysis</h1>
+
+<!-- Question 1: Financial Health -->
+<h2>Question 1: How does financial health vary among the selected clean energy companies?</h2>
+<label for="companySelector">Select a Company:</label>
+<select id="companySelector" onchange="updateRadarChart()">
+    <option value="NEE">NEE</option>
+    <option value="FSLR">FSLR</option>
+    <option value="ENPH">ENPH</option>
+    <option value="BEPC">BEPC</option>
+    <option value="RUN">RUN</option>
+    <option value="CWEN">CWEN</option>
+    <option value="BE">BE</option>
+    <option value="PLUG">PLUG</option>
+    <option value="SEDG">SEDG</option>
+    <option value="ORA">ORA</option>
+</select>
+<canvas id="financialHealthChart"></canvas>
+
+<!-- Question 2: Long-term Growth -->
+<h2>Question 2: Which Companies in the clean energy sector are positioned for Long-term growth?</h2>
+<canvas id="growthChart"></canvas>
+<canvas id="scatterChart"></canvas>
+
+<!-- Question 3: Balance Between Income Generation and Financial Stability -->
+<h2>Question 3: Which clean energy companies offer the best balance between income generation and financial stability?</h2>
+<canvas id="bubbleChart"></canvas>
+<canvas id="barChart"></canvas>
+
+<script>
+    // Financial Health Data (Radar Chart)
+    const financialHealthData = {
+        labels: ["debtToEquity", "currentRatio", "interestCoverage", "debtToAssets"],
+        datasets: {
+            NEE: {
+                label: "NEE",
+                data: [1.4279975588063067, 0.5193143911482279, 3.4795304937958162, 0.3897576266297462],
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                borderColor: "rgba(255, 99, 132, 1)"
+            },
+            FSLR: {
+                label: "FSLR",
+                data: [0.061982029120781615, 3.5758958875526274, 13.776653442350419, 0.043619000751834995],
+                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                borderColor: "rgba(54, 162, 235, 1)"
+            },
+            ENPH: {
+                label: "ENPH",
+                data: [1.2734188007501435, 3.1432820539175723, 24.4364864106253, 0.345011038272913],
+                backgroundColor: "rgba(255, 206, 86, 0.2)",
+                borderColor: "rgba(255, 206, 86, 1)"
+            },
+            BEPC: {
+                label: "BEPC",
+                data: [4.558886658997752, 0.7375252850184723, 0.9482509649068815, 0.34493829273806503],
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                borderColor: "rgba(75, 192, 192, 1)"
+            },
+            RUN: {
+                label: "RUN",
+                data: [1.6155896618428507, 1.4512044614297541, -1.8437581315247347, 0.44404756763193287],
+                backgroundColor: "rgba(153, 102, 255, 0.2)",
+                borderColor: "rgba(153, 102, 255, 1)"
+            },
+            CWEN: {
+                label: "CWEN",
+                data: [3.946601159882708, 1.228181772706947, 0.8749073201434345, 0.6491412517106905],
+                backgroundColor: "rgba(255, 159, 64, 0.2)",
+                borderColor: "rgba(255, 159, 64, 1)"
+            },
+            BE: {
+                label: "BE",
+                data: [-2.412846477573682, 2.0287091485676454, -2.392518963229198, 0.6464406436376419],
+                backgroundColor: "rgba(201, 203, 207, 0.2)",
+                borderColor: "rgba(201, 203, 207, 1)"
+            },
+            PLUG: {
+                label: "PLUG",
+                data: [0.9966837052354384, 5.300565864050439, -11.516550409852066, 0.2714515218994166],
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                borderColor: "rgba(255, 99, 132, 1)"
+            },
+            SEDG: {
+                label: "SEDG",
+                data: [0.3735365470409276, 3.2590491354057427, 21.46723883413504, 0.1777103098184098],
+                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                borderColor: "rgba(54, 162, 235, 1)"
+            },
+            ORA: {
+                label: "ORA",
+                data: [0.9558123418625941, 1.574962666942719, 0.7311767184601367, 0.41122112096083957],
+                backgroundColor: "rgba(255, 206, 86, 0.2)",
+                borderColor: "rgba(255, 206, 86, 1)"
+            }
+        }
+    };
+
+    let radarChart;
+
+    function updateRadarChart() {
+        const selectedCompany = document.getElementById('companySelector').value;
+        const selectedDataSet = financialHealthData.datasets[selectedCompany];
+
+        if (radarChart) {
+            radarChart.destroy();
+        }
+
+        radarChart = new Chart(document.getElementById('financialHealthChart').getContext('2d'), {
+            type: 'radar',
+            data: {
+                labels: financialHealthData.labels,
+                datasets: [selectedDataSet]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+
+    // Initialize chart with the first company selected by default
+    document.addEventListener('DOMContentLoaded', function () {
+        updateRadarChart();
+    });
+
+    // Growth Data (Line Chart)
+    const growthChart = new Chart(document.getElementById('growthChart').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: [2019, 2020, 2021, 2022, 2023],
+            datasets: [
+                {
+                    label: "NEE Revenue Growth",
+                    data: [9.96058091286307, 9.186830015313936, 8.697579617834394, 10.623542532697963, 13.87591925373871],
+                    borderColor: "Red",
+                    fill: false
+                },
+                {
+                    label: "NEE Net Income Growth",
+                    data: [1.954875518672199, 1.490045941807044, 1.4405095541401272, 1.645543952144378, 3.607916687231627],
+                    borderColor: "Blue",
+                    fill: false
+                },
+                {
+                    label: "FSLR Revenue Growth",
+                    data: [29.086667932769917, 25.610738001454656, 27.510770446910026, 24.582772569004515, 31.074507233484713],
+                    borderColor: "Teal",
+                },
+                {
+                    label: "FSLR Net Income Growth",
+                    data: [-1.088681036938562, 3.7627872708209362, 4.410688574574405, -0.414505729650589, 7.7791750550119385],
+                    borderColor: "Yellow",
+                    fill: false
+                },
+                {
+                    label: "ENPH Revenue Growth",
+                    data: [5.349301277492652, 6.167719275889807, 10.311874650251818, 17.22105815336648, 16.79757435325864],
+                    borderColor: "Purple",
+                    fill: false
+                },
+                {
+                    label: "ENPH Net Income Growth",
+                    data: [1.380720228252208, 1.067170538622661, 1.08523782876329, 2.9358325514041472, 3.21857218278876],
+                    borderColor: "Orange",
+                    fill: false
+                }
+                // Add other companies' data here similarly
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Year'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Value'
+                    }
+                }
+            }
+        }
+    });
+
+    // Scatter Data (Scatter Plot)
+    const scatterChart = new Chart(document.getElementById('scatterChart').getContext('2d'), {
+        type: 'scatter',
+        data: {
+            datasets: [
+                {
+                    label: "NEE",
+                    data: [{ x: 0.04926181272859881, y: 0.0989058320252298 }],
+                    backgroundColor: "rgba(255, 99, 132, 0.7)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1,
+                    radius: 5
+                },
+                {
+                    label: "FSLR",
+                    data: [{ x: 0.07023820538708461, y: 0.04899319875053361 }],
+                    backgroundColor: "rgba(54, 162, 235, 0.7)",
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    borderWidth: 1,
+                    radius: 5
+                },
+                {
+                    label: "ENPH",
+                    data: [{ x: 0.2546361073209912, y: 0.42690586741873 }],
+                    backgroundColor: "rgba(255, 206, 86, 0.7)",
+                    borderColor: "rgba(255, 206, 86, 1)",
+                    borderWidth: 1,
+                    radius: 5
+                },
+                {
+                    label: "BEPC",
+                    data: [{ x: 0.03390355970722501, y: -0.37800013447688985 }],
+                    backgroundColor: "rgba(75, 192, 192, 0.7)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1,
+                    radius: 5
+                },
+                {
+                    label: "RUN",
+                    data: [{ x: -0.0589666608656952, y: -0.21973359774775064 }],
+                    backgroundColor: "rgba(153, 102, 255, 0.7)",
+                    borderColor: "rgba(153, 102, 255, 1)",
+                    borderWidth: 1,
+                    radius: 5
+                },
+                {
+                    label: "CWEN",
+                    data: [{ x: 0.0305297823301872, y: 0.0770553121654666 }],
+                    backgroundColor: "rgba(255, 159, 64, 0.7)",
+                    borderColor: "rgba(255, 159, 64, 1)",
+                    borderWidth: 1,
+                    radius: 5
+                },
+                {
+                    label: "BE",
+                    data: [{ x: -0.15356186927573842, y: 0.36202934055965147 }],
+                    backgroundColor: "rgba(201, 203, 207, 0.7)",
+                    borderColor: "rgba(201, 203, 207, 1)",
+                    borderWidth: 1,
+                    radius: 5
+                },
+                {
+                    label: "PLUG",
+                    data: [{ x: -0.1749120644669628, y: -0.40432902331135684 }],
+                    backgroundColor: "rgba(255, 99, 132, 0.7)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1,
+                    radius: 5
+                },
+                {
+                    label: "SEDG",
+                    data: [{ x: 0.0750765055092076, y: 0.0992495415170348 }],
+                    backgroundColor: "rgba(54, 162, 235, 0.7)",
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    borderWidth: 1,
+                    radius: 5
+                },
+                {
+                    label: "ORA",
+                    data: [{ x: 0.015025918644755202, y: 0.046607921858706006 }],
+                    backgroundColor: "rgba(255, 206, 86, 0.7)",
+                    borderColor: "rgba(255, 206, 86, 1)",
+                    borderWidth: 1,
+                    radius: 5
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'ROIC'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'ROE'
+                    }
+                }
+            }
+        }
+    });
+
+    // Bubble Data (Bubble Chart)
+    const bubbleChart = new Chart(document.getElementById('bubbleChart').getContext('2d'), {
+        type: 'bubble',
+        data: {
+            datasets: [
+                {
+                    label: "NEE",
+                    data: [{ x: -0.285486481454852, y: 0.02126845801692, r: 14.279975588063067 }],
+                    backgroundColor: "rgba(0, 123, 255, 0.7)",
+                    borderColor: "rgba(0, 123, 255, 1)"
+                },
+                {
+                    label: "FSLR",
+                    data: [{ x: -3.751858894689628, y: 0.0, r: 0.6198202912078161 }],
+                    backgroundColor: "rgba(255, 99, 132, 0.7)",
+                    borderColor: "rgba(255, 99, 132, 1)"
+                },
+                {
+                    label: "ENPH",
+                    data: [{ x: 2.8636734819630756, y: 0.0, r: 12.734188007501434 }],
+                    backgroundColor: "rgba(54, 162, 235, 0.7)",
+                    borderColor: "rgba(54, 162, 235, 1)"
+                },
+                {
+                    label: "BEPC",
+                    data: [{ x: 0.8860083444173286, y: 0.021152078736211003, r: 45.58886658997751 }],
+                    backgroundColor: "rgba(255, 206, 86, 0.7)",
+                    borderColor: "rgba(255, 206, 86, 1)"
+                },
+                {
+                    label: "RUN",
+                    data: [{ x: -11.952841351746667, y: 0.0, r: 16.155896618428507 }],
+                    backgroundColor: "rgba(75, 192, 192, 0.7)",
+                    borderColor: "rgba(75, 192, 192, 1)"
+                },
+                {
+                    label: "CWEN",
+                    data: [{ x: 3.9805076384414235, y: 0.07677817359192081, r: 39.46601159882708 }],
+                    backgroundColor: "rgba(153, 102, 255, 0.7)",
+                    borderColor: "rgba(153, 102, 255, 1)"
+                },
+                {
+                    label: "BE",
+                    data: [{ x: -0.8895343300927581, y: 0.0, r: -24.12846477573682 }],
+                    backgroundColor: "rgba(255, 159, 64, 0.7)",
+                    borderColor: "rgba(255, 159, 64, 1)"
+                },
+                {
+                    label: "PLUG",
+                    data: [{ x: -1.4211650324096847, y: 0.0, r: 9.966837052354384 }],
+                    backgroundColor: "rgba(201, 203, 207, 0.7)",
+                    borderColor: "rgba(201, 203, 207, 1)"
+                },
+                {
+                    label: "SEDG",
+                    data: [{ x: -0.37014206908551284, y: 0.0, r: 3.735365470409276 }],
+                    backgroundColor: "rgba(0, 123, 255, 0.7)",
+                    borderColor: "rgba(0, 123, 255, 1)"
+                },
+                {
+                    label: "ORA",
+                    data: [{ x: -3.007884349779654, y: 0.005743159065149, r: 9.558123418625941 }],
+                    backgroundColor: "rgba(255, 99, 132, 0.7)",
+                    borderColor: "rgba(255, 99, 132, 1)"
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Free Cash Flow Per Share'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Dividend Yield'
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.raw.label + ': (x: ' + context.raw.x + ', y: ' + context.raw.y + ', size: ' + context.raw.r + ')';
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Bar Data (Bar Chart)
+    const barChart = new Chart(document.getElementById('barChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ["NEE", "FSLR", "ENPH", "BEPC", "RUN", "CWEN", "BE", "PLUG", "SEDG", "ORA"],
+            datasets: [
+                {
+                    label: "Payout Ratio",
+                    data: [0.8396631706498974, 0.0, 0.0, 1.0011997471969392, 0.0, -0.8642829488868514, 0.0, 0.0, 0.0, 0.318464814359015],
+                    backgroundColor: "rgba(255, 99, 132, 0.2)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1
+                },
+                {
+                    label: "Current Ratio",
+                    data: [0.5193143911482279, 3.5758958875526274, 3.1432820539175723, 0.7375252850184723, 1.4512044614297541, 1.228181772706947, 2.0287091485676454, 5.300565864050439, 3.2590491354057427, 1.574962666942719],
+                    backgroundColor: "rgba(54, 162, 235, 0.2)",
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { 
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Ratio'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

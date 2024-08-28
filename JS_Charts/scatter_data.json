@@ -1,0 +1,99 @@
+{
+    "datasets": [
+        {
+            "label": "ROIC vs. ROE",
+            "data": [
+                {
+                    "x": 0.04926181272859881,
+                    "y": 0.0989058320252298,
+                    "label": "NEE",
+                    "backgroundColor": "rgba(0, 123, 255, 0.7)",
+                    "borderColor": "rgba(0, 123, 255, 1)",
+                    "borderWidth": 1,
+                    "radius": 5
+                },
+                {
+                    "x": 0.07023820538708461,
+                    "y": 0.04899319875053361,
+                    "label": "FSLR",
+                    "backgroundColor": "rgba(0, 123, 255, 0.7)",
+                    "borderColor": "rgba(0, 123, 255, 1)",
+                    "borderWidth": 1,
+                    "radius": 5
+                },
+                {
+                    "x": 0.2546361073209912,
+                    "y": 0.42690586741873,
+                    "label": "ENPH",
+                    "backgroundColor": "rgba(0, 123, 255, 0.7)",
+                    "borderColor": "rgba(0, 123, 255, 1)",
+                    "borderWidth": 1,
+                    "radius": 5
+                },
+                {
+                    "x": 0.03390355970722501,
+                    "y": -0.37800013447688985,
+                    "label": "BEPC",
+                    "backgroundColor": "rgba(0, 123, 255, 0.7)",
+                    "borderColor": "rgba(0, 123, 255, 1)",
+                    "borderWidth": 1,
+                    "radius": 5
+                },
+                {
+                    "x": -0.0589666608656952,
+                    "y": -0.21973359774775064,
+                    "label": "RUN",
+                    "backgroundColor": "rgba(0, 123, 255, 0.7)",
+                    "borderColor": "rgba(0, 123, 255, 1)",
+                    "borderWidth": 1,
+                    "radius": 5
+                },
+                {
+                    "x": 0.0305297823301872,
+                    "y": 0.0770553121654666,
+                    "label": "CWEN",
+                    "backgroundColor": "rgba(0, 123, 255, 0.7)",
+                    "borderColor": "rgba(0, 123, 255, 1)",
+                    "borderWidth": 1,
+                    "radius": 5
+                },
+                {
+                    "x": -0.15356186927573842,
+                    "y": 0.36202934055965147,
+                    "label": "BE",
+                    "backgroundColor": "rgba(0, 123, 255, 0.7)",
+                    "borderColor": "rgba(0, 123, 255, 1)",
+                    "borderWidth": 1,
+                    "radius": 5
+                },
+                {
+                    "x": -0.1749120644669628,
+                    "y": -0.40432902331135684,
+                    "label": "PLUG",
+                    "backgroundColor": "rgba(0, 123, 255, 0.7)",
+                    "borderColor": "rgba(0, 123, 255, 1)",
+                    "borderWidth": 1,
+                    "radius": 5
+                },
+                {
+                    "x": 0.0750765055092076,
+                    "y": 0.0992495415170348,
+                    "label": "SEDG",
+                    "backgroundColor": "rgba(0, 123, 255, 0.7)",
+                    "borderColor": "rgba(0, 123, 255, 1)",
+                    "borderWidth": 1,
+                    "radius": 5
+                },
+                {
+                    "x": 0.015025918644755202,
+                    "y": 0.046607921858706006,
+                    "label": "ORA",
+                    "backgroundColor": "rgba(0, 123, 255, 0.7)",
+                    "borderColor": "rgba(0, 123, 255, 1)",
+                    "borderWidth": 1,
+                    "radius": 5
+                }
+            ]
+        }
+    ]
+}
